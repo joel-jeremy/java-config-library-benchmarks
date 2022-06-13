@@ -33,7 +33,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: externalized-properties/build/reports/results.json
+          file_path: externalized-properties/build/reports/jmh/results.json
           gist_file_name: externalized-properties-results.json
           file_type: json
 
@@ -45,7 +45,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: cfg4j/build/reports/results.json
+          file_path: cfg4j/build/reports/jmh/results.json
           gist_file_name: cf4j-results.json
           file_type: json
       
@@ -57,7 +57,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: gestalt-config/build/reports/results.json
+          file_path: gestalt-config/build/reports/jmh/results.json
           gist_file_name: gestalt-config-results.json
           file_type: json
         
@@ -69,7 +69,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: lightbend-config/build/reports/results.json
+          file_path: lightbend-config/build/reports/jmh/results.json
           gist_file_name: lightbend-config-results.json
           file_type: json
         
@@ -81,7 +81,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: microprofile-geronimo/build/reports/results.json
+          file_path: microprofile-geronimo/build/reports/jmh/results.json
           gist_file_name: microprofile-geronimo-results.json
           file_type: json
         
@@ -93,7 +93,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: microprofile-microbean/build/reports/results.json
+          file_path: microprofile-microbean/build/reports/jmh/results.json
           gist_file_name: microprofile-microbean-results.json
           file_type: json
         
@@ -105,7 +105,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: microprofile-smallrye/build/reports/results.json
+          file_path: microprofile-smallrye/build/reports/jmh/results.json
           gist_file_name: microprofile-smallrye-results.json
           file_type: json
         
@@ -117,6 +117,6 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: owner/build/reports/results.json
+          file_path: owner/build/reports/jmh/results.json
           gist_file_name: owner-results.json
           file_type: json
