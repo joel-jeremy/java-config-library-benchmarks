@@ -3,6 +3,8 @@ plugins {
     id 'io.morethan.jmhreport' version "0.9.0"
 }
 
+apply plugin: 'io.morethan.jmhreport'
+
 allprojects {
     group = 'io.github.joeljeremy7.java.config.lib.benchmarks'
     version = '1.0.0-SNAPSHOT'
@@ -18,7 +20,6 @@ def javaProjects = subprojects.findAll { new File(it.projectDir, "src").exists()
 configure(javaProjects) {
     apply plugin: 'java-library'
     apply plugin: 'me.champeau.jmh'
-    apply plugin: 'io.morethan.jmhreport'
 
     java {
         toolchain {
@@ -32,6 +33,7 @@ configure(javaProjects) {
         resultsFile = project.file("${project.buildDir}/reports/jmh/results.json")
         resultFormat = 'JSON'
         jvmArgs = [ '-Xmx2G' ]
+        failOnError = true
         // Warmup
         warmup = '5s'
         warmupIterations = 3
@@ -39,13 +41,32 @@ configure(javaProjects) {
         timeOnIteration = '5s'
         iterations = 5
         fork = 2
-        failOnError = true
     }
-
-    jmhReport {
-        jmhResultPath = project.file("${project.buildDir}/reports/jmh/results.json")
-        jmhReportOutput = project.file("${project.buildDir}/reports/jmh")
-    }
-
-    tasks.jmh.finalizedBy tasks.jmhReport
 }
+
+import groovy.json.*;
+
+tasks.register('mergeJmhResults') {
+    doLast {
+        mkdir "merged-results"
+        def mergedResultsFile = new File(project.rootDir, "merged-results/merged-jmh-results.json");
+        def slurper = new JsonSlurper()
+        def merged = slurper.parseText('[]')
+        javaProjects.each {
+            def projectResultsFilePath = "${it.buildDir}/reports/jmh/results.json";
+            println "Merging result file ${projectResultsFilePath}"
+            def projectResultsFile = new File(projectResultsFilePath);
+            def results = slurper.parseText(projectResultsFile.text)
+            merged += results
+        }
+        mergedResultsFile.text = JsonOutput.prettyPrint(new JsonBuilder(merged).toString())
+        println "Merged result file can be found in ${mergedResultsFile}."
+    }
+}
+tasks.jmh.finalizedBy tasks.mergeJmhResults
+
+jmhReport {
+    jmhResultPath = project.file("${project.rootDir}/merged-results/merged-jmh-results.json")
+    jmhReportOutput = project.file("${project.rootDir}/merged-results")
+}
+tasks.mergeJmhResults.finalizedBy tasks.jmhReport

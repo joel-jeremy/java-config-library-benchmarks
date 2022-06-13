@@ -9,3 +9,5 @@
     :microprofile-microbean:jmh \
     :microprofile-smallrye:jmh \
     :owner:jmh
+
+./gradlew mergeJmhResults jmhReport

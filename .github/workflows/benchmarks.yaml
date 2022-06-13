@@ -22,101 +22,97 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       
-      - name: Build with Gradle
-        run: ./gradlew build
-      
-      - name: Run Externalized Properties Benchmarks
-        run: ./gradlew :externalized-properties:jmh
+      - name: Run All Benchmarks
+        run: ./runAllJmh.sh
 
-      - name: Deploy Externalized Properties Results to Gist
+      - name: Deploy Merged Benchmark Results to Gist
         uses: exuanbo/actions-deploy-gist@v1
         with:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: externalized-properties/build/reports/jmh/results.json
-          gist_file_name: externalized-properties-results.json
+          file_path: merged-results/merged-jmh-results.json
           file_type: json
 
-      - name: Run cfg4j Benchmarks
-        run: ./gradlew :cfg4j:jmh
+      # - name: Run cfg4j Benchmarks
+      #   run: ./gradlew :cfg4j:jmh
 
-      - name: Deploy cfg4j Results to Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: cfg4j/build/reports/jmh/results.json
-          gist_file_name: cfg4j-results.json
-          file_type: json
+      # - name: Deploy cfg4j Results to Gist
+      #   uses: exuanbo/actions-deploy-gist@v1
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gist_id: 016a70a392934d0e5a07a4d291731218
+      #     file_path: cfg4j/build/reports/jmh/results.json
+      #     gist_file_name: cfg4j-results.json
+      #     file_type: json
       
-      - name: Run Gestalt Config Benchmarks
-        run: ./gradlew :gestalt-config:jmh
+      # - name: Run Gestalt Config Benchmarks
+      #   run: ./gradlew :gestalt-config:jmh
       
-      - name: Deploy Gestalt Config Results to Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: gestalt-config/build/reports/jmh/results.json
-          gist_file_name: gestalt-config-results.json
-          file_type: json
+      # - name: Deploy Gestalt Config Results to Gist
+      #   uses: exuanbo/actions-deploy-gist@v1
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gist_id: 016a70a392934d0e5a07a4d291731218
+      #     file_path: gestalt-config/build/reports/jmh/results.json
+      #     gist_file_name: gestalt-config-results.json
+      #     file_type: json
         
-      - name: Run Lightbend Config Benchmarks
-        run: ./gradlew :lightbend-config:jmh
+      # - name: Run Lightbend Config Benchmarks
+      #   run: ./gradlew :lightbend-config:jmh
       
-      - name: Deploy Lightbend Config Results to Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: lightbend-config/build/reports/jmh/results.json
-          gist_file_name: lightbend-config-results.json
-          file_type: json
+      # - name: Deploy Lightbend Config Results to Gist
+      #   uses: exuanbo/actions-deploy-gist@v1
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gist_id: 016a70a392934d0e5a07a4d291731218
+      #     file_path: lightbend-config/build/reports/jmh/results.json
+      #     gist_file_name: lightbend-config-results.json
+      #     file_type: json
         
-      - name: Run MicroProfile Geronimo Implementation Benchmarks
-        run: ./gradlew :microprofile-geronimo:jmh
+      # - name: Run MicroProfile Geronimo Implementation Benchmarks
+      #   run: ./gradlew :microprofile-geronimo:jmh
       
-      - name: Deploy MicroProfile Geronimo Results to Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: microprofile-geronimo/build/reports/jmh/results.json
-          gist_file_name: microprofile-geronimo-results.json
-          file_type: json
+      # - name: Deploy MicroProfile Geronimo Results to Gist
+      #   uses: exuanbo/actions-deploy-gist@v1
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gist_id: 016a70a392934d0e5a07a4d291731218
+      #     file_path: microprofile-geronimo/build/reports/jmh/results.json
+      #     gist_file_name: microprofile-geronimo-results.json
+      #     file_type: json
         
-      - name: Run MicroProfile Geronimo Implementation Benchmarks
-        run: ./gradlew :microprofile-microbean:jmh
+      # - name: Run MicroProfile Geronimo Implementation Benchmarks
+      #   run: ./gradlew :microprofile-microbean:jmh
       
-      - name: Deploy MicroProfile MicroBean Results to Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: microprofile-microbean/build/reports/jmh/results.json
-          gist_file_name: microprofile-microbean-results.json
-          file_type: json
+      # - name: Deploy MicroProfile MicroBean Results to Gist
+      #   uses: exuanbo/actions-deploy-gist@v1
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gist_id: 016a70a392934d0e5a07a4d291731218
+      #     file_path: microprofile-microbean/build/reports/jmh/results.json
+      #     gist_file_name: microprofile-microbean-results.json
+      #     file_type: json
         
-      - name: Run MicroProfile Geronimo Implementation Benchmarks
-        run: ./gradlew :microprofile-smallrye:jmh
+      # - name: Run MicroProfile Geronimo Implementation Benchmarks
+      #   run: ./gradlew :microprofile-smallrye:jmh
       
-      - name: Deploy MicroProfile SmallRye Results to Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: microprofile-smallrye/build/reports/jmh/results.json
-          gist_file_name: microprofile-smallrye-results.json
-          file_type: json
+      # - name: Deploy MicroProfile SmallRye Results to Gist
+      #   uses: exuanbo/actions-deploy-gist@v1
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gist_id: 016a70a392934d0e5a07a4d291731218
+      #     file_path: microprofile-smallrye/build/reports/jmh/results.json
+      #     gist_file_name: microprofile-smallrye-results.json
+      #     file_type: json
         
-      - name: Run MicroProfile Geronimo Implementation Benchmarks
-        run: ./gradlew :owner:jmh
+      # - name: Run MicroProfile Geronimo Implementation Benchmarks
+      #   run: ./gradlew :owner:jmh
       
-      - name: Deploy Owner Results to Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: 016a70a392934d0e5a07a4d291731218
-          file_path: owner/build/reports/jmh/results.json
-          gist_file_name: owner-results.json
-          file_type: json
+      # - name: Deploy Owner Results to Gist
+      #   uses: exuanbo/actions-deploy-gist@v1
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gist_id: 016a70a392934d0e5a07a4d291731218
+      #     file_path: owner/build/reports/jmh/results.json
+      #     gist_file_name: owner-results.json
+      #     file_type: json

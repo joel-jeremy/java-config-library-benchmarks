@@ -6,3 +6,5 @@ build
 bin
 
 .DS_Store
+
+outputs
