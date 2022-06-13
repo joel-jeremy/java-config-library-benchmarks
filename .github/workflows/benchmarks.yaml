@@ -46,7 +46,7 @@ jobs:
           token: ${{ secrets.TOKEN }}
           gist_id: 016a70a392934d0e5a07a4d291731218
           file_path: cfg4j/build/reports/jmh/results.json
-          gist_file_name: cf4j-results.json
+          gist_file_name: cfg4j-results.json
           file_type: json
       
       - name: Run Gestalt Config Benchmarks
