@@ -12,7 +12,7 @@ import org.openjdk.jmh.annotations.State;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class Benchmarks {
+public abstract class LightbendConfigBenchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -26,11 +26,11 @@ public abstract class Benchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class Avgt extends Benchmarks {}
+    public static class LightbendConfigAvgt extends LightbendConfigBenchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class Thrpt extends Benchmarks {}
+    public static class LightbendConfigThrpt extends LightbendConfigBenchmarks {}
 
     @Benchmark
     public String stringProperty(BenchmarkState state) {

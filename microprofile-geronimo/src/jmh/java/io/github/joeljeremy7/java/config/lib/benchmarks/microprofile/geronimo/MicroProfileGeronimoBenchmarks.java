@@ -1,6 +1,6 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.microprofile.smallrye;
+package io.github.joeljeremy7.java.config.lib.benchmarks.microprofile.geronimo;
 
-import io.smallrye.config.PropertiesConfigSource;
+import org.apache.geronimo.config.configsource.PropertyFileConfigSource;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -11,21 +11,20 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public abstract class Benchmarks {
+public abstract class MicroProfileGeronimoBenchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
         private Config config;
 
         @Setup
-        public void setup() throws IOException {
+        public void setup() {
             this.config = ConfigProviderResolver.instance()
                 .getBuilder()
                 .addDefaultSources()
-                .withSources(new PropertiesConfigSource(
+                .withSources(new PropertyFileConfigSource(
                     getClass().getResource("/AppProps.properties")
                 ))
                 .build();
@@ -34,11 +33,11 @@ public abstract class Benchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class Avgt extends Benchmarks {}
+    public static class MicroProfileGeronimoAvgt extends MicroProfileGeronimoBenchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class Thrpt extends Benchmarks {}
+    public static class MicroProfileGeronimoThrpt extends MicroProfileGeronimoBenchmarks {}
 
     @Benchmark
     public String stringProperty(BenchmarkState state) {

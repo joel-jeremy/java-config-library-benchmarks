@@ -11,7 +11,7 @@ import org.openjdk.jmh.annotations.State;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class Benchmarks {
+public abstract class OwnerBenchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -25,11 +25,11 @@ public abstract class Benchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class Avgt extends Benchmarks {}
+    public static class OwnerAvgt extends OwnerBenchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class Thrpt extends Benchmarks {}
+    public static class OwnerThrpt extends OwnerBenchmarks {}
 
     @Benchmark
     public String stringProperty(BenchmarkState state) {
@@ -39,10 +39,5 @@ public abstract class Benchmarks {
     @Benchmark
     public int intProperty(BenchmarkState state) {
         return state.appProps.testInt1();
-    }
-
-    @Benchmark
-    public String variableExpansion(BenchmarkState state) {
-        return state.appProps.testVariable1();
     }
 }

@@ -13,7 +13,7 @@ import org.openjdk.jmh.annotations.State;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public abstract class Benchmarks {
+public abstract class ExternalizedPropertiesBenchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -38,11 +38,11 @@ public abstract class Benchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class Avgt extends Benchmarks {}
+    public static class ExternalizedPropertiesAvgt extends ExternalizedPropertiesBenchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class Thrpt extends Benchmarks {}
+    public static class ExternalizedPropertiesThrpt extends ExternalizedPropertiesBenchmarks {}
 
     @Benchmark
     public String stringProperty(BenchmarkState state) {
@@ -55,22 +55,12 @@ public abstract class Benchmarks {
     }
 
     @Benchmark
-    public String variableExpansion(BenchmarkState state) {
-        return state.appProps.testVariable1();
-    }
-
-    @Benchmark
-    public String resolverFacade_stringProperty(BenchmarkState state) {
+    public String stringProperty_resolverFacade(BenchmarkState state) {
         return state.resolverFacadeProxy.resolve("test1");
     }
 
     @Benchmark
-    public int resolverFacade_intProperty(BenchmarkState state) {
+    public int intProperty_resolverFacade(BenchmarkState state) {
         return state.resolverFacadeProxy.resolve("testInt1", int.class);
-    }
-
-    @Benchmark
-    public String resolverFacade_variableExpansion(BenchmarkState state) {
-        return state.resolverFacadeProxy.resolve("variable.${test1}");
     }
 }

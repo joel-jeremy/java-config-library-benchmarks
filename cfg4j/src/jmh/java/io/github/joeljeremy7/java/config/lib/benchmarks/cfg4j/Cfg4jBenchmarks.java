@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-public abstract class Benchmarks {
+public abstract class Cfg4jBenchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -50,11 +50,11 @@ public abstract class Benchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class Avgt extends Benchmarks {}
+    public static class Cfg4jAvgt extends Cfg4jBenchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class Thrpt extends Benchmarks {}
+    public static class Cfg4jThrpt extends Cfg4jBenchmarks {}
 
     @Benchmark
     public String stringProperty(BenchmarkState state) {
@@ -67,12 +67,12 @@ public abstract class Benchmarks {
     }
 
     @Benchmark
-    public String getProperty_stringProperty(BenchmarkState state) {
+    public String stringProperty_getProperty(BenchmarkState state) {
         return state.configurationProvider.getProperty("test1", String.class);
     }
 
     @Benchmark
-    public int getProperty_intProperty(BenchmarkState state) {
+    public int intProperty_getProperty(BenchmarkState state) {
         return state.configurationProvider.getProperty("testInt1", int.class);
     }
 }
