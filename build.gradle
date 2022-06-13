@@ -1,0 +1,51 @@
+plugins {
+    id 'me.champeau.jmh' version '0.6.6'
+    id 'io.morethan.jmhreport' version "0.9.0"
+}
+
+allprojects {
+    group = 'io.github.joeljeremy7.java.config.lib.benchmarks'
+    version = '1.0.0-SNAPSHOT'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+def javaProjects = subprojects.findAll { new File(it.projectDir, "src").exists() }
+
+configure(javaProjects) {
+    apply plugin: 'java-library'
+    apply plugin: 'me.champeau.jmh'
+    apply plugin: 'io.morethan.jmhreport'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(11)
+        }
+    }
+
+    jmh {
+        jmhVersion = '1.35'
+        // humanOutputFile = project.file("${project.buildDir}/reports/jmh/human.txt")
+        resultsFile = project.file("${project.buildDir}/reports/jmh/results.json")
+        resultFormat = 'JSON'
+        jvmArgs = [ '-Xmx2G' ]
+        // Warmup
+        warmup = '5s'
+        warmupIterations = 3
+        // Benchmarks
+        timeOnIteration = '5s'
+        iterations = 5
+        fork = 2
+        failOnError = true
+    }
+
+    jmhReport {
+        jmhResultPath = project.file("${project.buildDir}/reports/jmh/results.json")
+        jmhReportOutput = project.file("${project.buildDir}/reports/jmh")
+    }
+
+    tasks.jmh.finalizedBy tasks.jmhReport
+}

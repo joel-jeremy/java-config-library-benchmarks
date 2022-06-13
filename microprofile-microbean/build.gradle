@@ -1,0 +1,3 @@
+dependencies {
+    implementation 'org.microbean:microbean-microprofile-config:0.4.2'
+}
