@@ -36,7 +36,7 @@ public abstract class Benchmarks {
 
     @Benchmark
     public int Baseline_SystemProperty_Int() {
-        return Integer.parseInt(System.getProperty("test1"));
+        return Integer.parseInt(System.getProperty("testInt1"));
     }
 
     @Benchmark
