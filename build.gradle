@@ -55,13 +55,18 @@ tasks.register('mergeJmhResults') {
 
         def slurper = new JsonSlurper()
         def mergedResults = slurper.parseText('[]')
+
         javaProjects.each {
-            def projectResultsFilePath = "${it.buildDir}/reports/jmh/results.json";
-            println "Merging JMH result file ${projectResultsFilePath}"
-            def projectResultsFile = new File(projectResultsFilePath);
-            def results = slurper.parseText(projectResultsFile.text)
-            mergedResults += results
+            def projectResultsFile = new File("${it.buildDir}/reports/jmh/results.json");
+            if (projectResultsFile.exists() && !projectResultsFile.text.isEmpty()) {
+                println "Merging JMH result file ${projectResultsFile}"
+                def results = slurper.parseText(projectResultsFile.text)
+                mergedResults += results
+            } else {
+                println "Project ${it.projectPath} has no JMH results. Skipping..."
+            }
         }
+
         mergedResultsFile.text = JsonOutput.prettyPrint(new JsonBuilder(mergedResults).toString())
         println "Merged JMH result file can be found in ${mergedResultsFile}."
     }

@@ -9,6 +9,7 @@
     :microprofile-geronimo:jmh \
     :microprofile-microbean:jmh \
     :microprofile-smallrye:jmh \
-    :owner:jmh
+    :owner:jmh \
+    :spring-core:jmh
 
 ./gradlew mergeJmhResults jmhReport

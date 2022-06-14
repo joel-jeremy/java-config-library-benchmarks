@@ -67,12 +67,12 @@ public abstract class Benchmarks {
     }
 
     @Benchmark
-    public String cfg4j_String_getProperty(BenchmarkState state) {
+    public String Cfg4j_GetProperty_String(BenchmarkState state) {
         return state.configurationProvider.getProperty("test1", String.class);
     }
 
     @Benchmark
-    public int cfg4j_Int_getProperty(BenchmarkState state) {
+    public int Cfg4j_GetProperty_Int(BenchmarkState state) {
         return state.configurationProvider.getProperty("testInt1", int.class);
     }
 }

@@ -55,12 +55,12 @@ public abstract class Benchmarks {
     }
 
     @Benchmark
-    public String EP_String_ResolverFacade(BenchmarkState state) {
+    public String EP_ResolverFacade_String(BenchmarkState state) {
         return state.resolverFacadeProxy.resolve("test1");
     }
 
     @Benchmark
-    public int EP_Int_ResolverFacade(BenchmarkState state) {
+    public int EP_ResolverFacade_Int(BenchmarkState state) {
         return state.resolverFacadeProxy.resolve("testInt1", int.class);
     }
 }
