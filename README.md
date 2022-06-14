@@ -11,6 +11,8 @@ Each push to the repository will trigger a benchmark run. Latest benchmark resul
 - [Gestalt Config](https://github.com/gestalt-config/gestalt)
 - [Lightbend Config](https://github.com/lightbend/config)
 - [MicroProfile Config - Geronimo](https://github.com/apache/geronimo-config)
+- [MicroProfile Config - Helidon](https://github.com/oracle/helidon)
+- [MicroProfile Config - KumuluzEE](https://github.com/kumuluz/kumuluzee-config-mp)
 - [MicroProfile Config - MicroBean](https://github.com/microbean/microbean-microprofile-config)
 - [MicroProfile Config - SmallRye](https://github.com/smallrye/smallrye-config)
 - [Owner](https://github.com/matteobaccan/owner)
