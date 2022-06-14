@@ -30,22 +30,22 @@ public abstract class Benchmarks {
     public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String SystemProperty_String() {
+    public String Baseline_SystemProperty_String() {
         return System.getProperty("test1");
     }
 
     @Benchmark
-    public int SystemProperty_Int() {
+    public int Baseline_SystemProperty_Int() {
         return Integer.parseInt(System.getProperty("test1"));
     }
 
     @Benchmark
-    public String EnvVar_String() {
+    public String Baseline_SystemEnv_String() {
         return System.getenv("TEST1");
     }
 
     @Benchmark
-    public int EnvVar_Int() {
+    public int Baseline_SystemEnv_Int() {
         return Integer.parseInt(System.getenv("TEST_INT1"));
     }
 
@@ -58,6 +58,6 @@ public abstract class Benchmarks {
         @SuppressWarnings("unchecked")
         Map<String, String> mutableMap = 
             (Map<String, String>)mutableMapField.get(env);
-        mutableMap.put("key", "value");
+        mutableMap.put(key, value);
     }
 }
