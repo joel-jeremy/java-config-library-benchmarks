@@ -13,11 +13,8 @@ import java.util.concurrent.TimeUnit;
 public abstract class Benchmarks {
 
     @Setup
-    public void setup() 
-            throws NoSuchFieldException, 
-                SecurityException, 
-                IllegalArgumentException, 
-                IllegalAccessException {
+    public void setup() throws NoSuchFieldException, SecurityException, 
+            IllegalArgumentException, IllegalAccessException {
         System.setProperty("test1", "test.value.1");
         System.setProperty("testInt1", "1");
         setEnv("TEST1", "test.value.1");
@@ -53,11 +50,8 @@ public abstract class Benchmarks {
     }
 
     // Reflectively modify the underlying mutable map of the env map.
-    private static void setEnv(String key, String value) 
-            throws NoSuchFieldException,
-                SecurityException, 
-                IllegalArgumentException, 
-                IllegalAccessException {
+    private static void setEnv(String key, String value) throws NoSuchFieldException,
+            SecurityException, IllegalArgumentException, IllegalAccessException {
         Map<String, String> env = System.getenv();
         Field mutableMapField = env.getClass().getDeclaredField("m");
         mutableMapField.setAccessible(true);
