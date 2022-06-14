@@ -1,5 +1,6 @@
 rootProject.name = 'java-config-library-benchmarks'
 include 'externalized-properties'
+include 'baseline'
 include 'lightbend-config'
 include 'cfg4j'
 include 'owner'

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ./gradlew build \
+    :baseline:jmh \
     :cfg4j:jmh \
     :externalized-properties:jmh \
     :gestalt-config:jmh \
