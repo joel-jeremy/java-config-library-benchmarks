@@ -1,6 +1,5 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.microprofile.smallrye;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
-import io.smallrye.config.PropertiesConfigSource;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -14,7 +13,7 @@ import org.openjdk.jmh.annotations.State;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public abstract class MicroProfileSmallRyeBenchmarks {
+public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -25,7 +24,7 @@ public abstract class MicroProfileSmallRyeBenchmarks {
             this.config = ConfigProviderResolver.instance()
                 .getBuilder()
                 .addDefaultSources()
-                .withSources(new PropertiesConfigSource(
+                .withSources(new PropertiesFileConfigSource(
                     getClass().getResource("/AppProps.properties")
                 ))
                 .build();
@@ -34,19 +33,19 @@ public abstract class MicroProfileSmallRyeBenchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class MicroProfileSmallRyeAvgt extends MicroProfileSmallRyeBenchmarks {}
+    public static class Avgt extends Benchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class MicroProfileSmallRyeThrpt extends MicroProfileSmallRyeBenchmarks {}
+    public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String stringProperty(BenchmarkState state) {
+    public String MP_MicroBean_String(BenchmarkState state) {
         return state.config.getValue("test1", String.class);
     }
 
     @Benchmark
-    public int intProperty(BenchmarkState state) {
+    public int MP_MicroBean_Int(BenchmarkState state) {
         return state.config.getValue("testInt1", int.class);
     }
 }

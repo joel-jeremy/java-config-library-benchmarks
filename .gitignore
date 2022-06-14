@@ -7,4 +7,4 @@ bin
 
 .DS_Store
 
-outputs
+merged-jmh-results

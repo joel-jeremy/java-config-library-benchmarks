@@ -1,4 +1,4 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.cfg4j;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
 import org.cfg4j.provider.ConfigurationProvider;
 import org.cfg4j.provider.ConfigurationProviderBuilder;
@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-public abstract class Cfg4jBenchmarks {
+public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -50,29 +50,29 @@ public abstract class Cfg4jBenchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class Cfg4jAvgt extends Cfg4jBenchmarks {}
+    public static class Avgt extends Benchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class Cfg4jThrpt extends Cfg4jBenchmarks {}
+    public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String stringProperty(BenchmarkState state) {
+    public String cfg4j_String(BenchmarkState state) {
         return state.appProps.test1();
     }
 
     @Benchmark
-    public int intProperty(BenchmarkState state) {
+    public int cfg4j_Int(BenchmarkState state) {
         return state.appProps.testInt1();
     }
 
     @Benchmark
-    public String stringProperty_getProperty(BenchmarkState state) {
+    public String cfg4j_String_getProperty(BenchmarkState state) {
         return state.configurationProvider.getProperty("test1", String.class);
     }
 
     @Benchmark
-    public int intProperty_getProperty(BenchmarkState state) {
+    public int cfg4j_Int_getProperty(BenchmarkState state) {
         return state.configurationProvider.getProperty("testInt1", int.class);
     }
 }

@@ -1,4 +1,4 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.cfg4j;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
 public interface AppProps {
     String test1();

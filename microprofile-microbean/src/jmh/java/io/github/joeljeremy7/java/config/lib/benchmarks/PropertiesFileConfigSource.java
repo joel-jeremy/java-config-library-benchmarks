@@ -1,4 +1,4 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.microprofile.microbean;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
 import org.eclipse.microprofile.config.spi.ConfigSource;
 

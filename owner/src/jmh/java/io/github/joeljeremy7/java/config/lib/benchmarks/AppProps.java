@@ -1,4 +1,4 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.owner;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.Sources;

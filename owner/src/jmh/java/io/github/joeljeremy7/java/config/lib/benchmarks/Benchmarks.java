@@ -1,7 +1,6 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.lightbend;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
+import org.aeonbits.owner.ConfigFactory;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -12,33 +11,33 @@ import org.openjdk.jmh.annotations.State;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class LightbendConfigBenchmarks {
+public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        private Config config;
+        private AppProps appProps;
 
         @Setup
         public void setup() {
-            this.config = ConfigFactory.load("AppProps");
+            this.appProps = ConfigFactory.create(AppProps.class);
         }
     }
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class LightbendConfigAvgt extends LightbendConfigBenchmarks {}
+    public static class Avgt extends Benchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class LightbendConfigThrpt extends LightbendConfigBenchmarks {}
+    public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String stringProperty(BenchmarkState state) {
-        return state.config.getString("test1");
+    public String Owner_String(BenchmarkState state) {
+        return state.appProps.test1();
     }
 
     @Benchmark
-    public int intProperty(BenchmarkState state) {
-        return state.config.getInt("testInt1");
+    public int Owner_Int(BenchmarkState state) {
+        return state.appProps.testInt1();
     }
 }

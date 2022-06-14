@@ -1,4 +1,4 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.externalizedproperties;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
 import io.github.joeljeremy7.externalizedproperties.core.ExternalizedProperties;
 import io.github.joeljeremy7.externalizedproperties.core.resolvers.ResourceResolver;
@@ -13,7 +13,7 @@ import org.openjdk.jmh.annotations.State;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public abstract class ExternalizedPropertiesBenchmarks {
+public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -38,29 +38,29 @@ public abstract class ExternalizedPropertiesBenchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class ExternalizedPropertiesAvgt extends ExternalizedPropertiesBenchmarks {}
+    public static class Avgt extends Benchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class ExternalizedPropertiesThrpt extends ExternalizedPropertiesBenchmarks {}
+    public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String stringProperty(BenchmarkState state) {
+    public String EP_String(BenchmarkState state) {
         return state.appProps.test1();
     }
 
     @Benchmark
-    public int intProperty(BenchmarkState state) {
+    public int EP_Int(BenchmarkState state) {
         return state.appProps.testInt1();
     }
 
     @Benchmark
-    public String stringProperty_resolverFacade(BenchmarkState state) {
+    public String EP_String_ResolverFacade(BenchmarkState state) {
         return state.resolverFacadeProxy.resolve("test1");
     }
 
     @Benchmark
-    public int intProperty_resolverFacade(BenchmarkState state) {
+    public int EP_Int_ResolverFacade(BenchmarkState state) {
         return state.resolverFacadeProxy.resolve("testInt1", int.class);
     }
 }

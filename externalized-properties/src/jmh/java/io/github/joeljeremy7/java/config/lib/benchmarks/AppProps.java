@@ -1,4 +1,4 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.externalizedproperties;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
 import io.github.joeljeremy7.externalizedproperties.core.ExternalizedProperty;
 

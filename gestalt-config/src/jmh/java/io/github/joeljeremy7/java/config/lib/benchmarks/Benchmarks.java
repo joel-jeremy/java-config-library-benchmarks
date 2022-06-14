@@ -1,4 +1,4 @@
-package io.github.joeljeremy7.java.config.lib.benchmarks.gestalt;
+package io.github.joeljeremy7.java.config.lib.benchmarks;
 
 import org.github.gestalt.config.Gestalt;
 import org.github.gestalt.config.builder.GestaltBuilder;
@@ -14,7 +14,7 @@ import org.openjdk.jmh.annotations.State;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class GestaltConfigBenchmarks {
+public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
@@ -34,19 +34,19 @@ public abstract class GestaltConfigBenchmarks {
 
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
-    public static class GestaltConfigAvgt extends GestaltConfigBenchmarks {}
+    public static class Avgt extends Benchmarks {}
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public static class GestaltConfigThrpt extends GestaltConfigBenchmarks {}
+    public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String stringProperty(BenchmarkState state) throws GestaltException {
+    public String GestaltConfig_String(BenchmarkState state) throws GestaltException {
         return state.gestalt.getConfig("test1", String.class);
     }
 
     @Benchmark
-    public int intProperty(BenchmarkState state) throws GestaltException {
+    public int GestaltConfig_Int(BenchmarkState state) throws GestaltException {
         return state.gestalt.getConfig("testInt1", int.class);
     }
 }
