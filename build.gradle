@@ -35,12 +35,12 @@ configure(javaProjects) {
         jvmArgs = [ '-Xmx2G' ]
         failOnError = true
         // Warmup
-        warmup = '1s'
-        warmupIterations = 1
+        warmup = '5s'
+        warmupIterations = 3
         // Benchmarks
-        timeOnIteration = '1s'
-        iterations = 1
-        fork = 1
+        timeOnIteration = '5s'
+        iterations = 5
+        fork = 2
     }
 }
 
