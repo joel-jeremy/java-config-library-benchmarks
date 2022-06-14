@@ -14,6 +14,7 @@ To view latest benchmarks results, go to [https://joeljeremy7.github.io/java-con
 - [MicroProfile Config - MicroBean](https://github.com/microbean/microbean-microprofile-config)
 - [MicroProfile Config - SmallRye](https://github.com/smallrye/smallrye-config)
 - [Owner](https://github.com/matteobaccan/owner)
+- [Spring Core Environment](https://github.com/spring-projects/spring-framework)
 
 ## Benchmark Setup
 
