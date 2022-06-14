@@ -32,3 +32,11 @@ jobs:
           gist_id: 016a70a392934d0e5a07a4d291731218
           file_path: merged-jmh-results/merged-jmh-results.json
           file_type: json
+
+      - name: GH Pages Upload
+        run: |
+          git config --global user.name 'Joel Jeremy Marquez'
+          git config --global user.email 'joeljeremy7@users.noreply.github.com'
+          git add merged-jmh-results -f
+          git commit -m "Updated Benchmark Results"
+          git subtree push --prefix merged-jmh-results origin gh-pages
