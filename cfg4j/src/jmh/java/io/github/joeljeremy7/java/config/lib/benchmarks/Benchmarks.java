@@ -57,12 +57,12 @@ public abstract class Benchmarks {
     public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String cfg4j_String(BenchmarkState state) {
+    public String Cfg4j_String(BenchmarkState state) {
         return state.appProps.test1();
     }
 
     @Benchmark
-    public int cfg4j_Int(BenchmarkState state) {
+    public int Cfg4j_Int(BenchmarkState state) {
         return state.appProps.testInt1();
     }
 

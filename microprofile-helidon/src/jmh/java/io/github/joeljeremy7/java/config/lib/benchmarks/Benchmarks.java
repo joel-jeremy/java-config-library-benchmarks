@@ -1,5 +1,6 @@
 package io.github.joeljeremy7.java.config.lib.benchmarks;
 
+import io.helidon.config.mp.MpConfigSources;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -26,7 +27,7 @@ public abstract class Benchmarks {
                 .addDefaultSources()
                 .addDiscoveredSources()
                 .addDiscoveredConverters()
-                .withSources(new PropertiesFileConfigSource(
+                .withSources(MpConfigSources.create(
                     getClass().getResource("/AppProps.properties")
                 ))
                 .build();
@@ -42,12 +43,12 @@ public abstract class Benchmarks {
     public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String MP_MicroBean_String(BenchmarkState state) {
+    public String MP_Helidon_String(BenchmarkState state) {
         return state.config.getValue("test1", String.class);
     }
 
     @Benchmark
-    public int MP_MicroBean_Int(BenchmarkState state) {
+    public int MP_Helidon_Int(BenchmarkState state) {
         return state.config.getValue("testInt1", int.class);
     }
 }

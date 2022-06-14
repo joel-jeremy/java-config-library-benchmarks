@@ -1,0 +1,3 @@
+dependencies {
+    implementation 'io.helidon.microprofile.config:helidon-microprofile-config:2.5.1'
+}

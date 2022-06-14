@@ -7,6 +7,8 @@
     :gestalt-config:jmh \
     :lightbend-config:jmh \
     :microprofile-geronimo:jmh \
+    :microprofile-helidon:jmh \
+    :microprofile-kumuluz-ee:jmh \
     :microprofile-microbean:jmh \
     :microprofile-smallrye:jmh \
     :owner:jmh \

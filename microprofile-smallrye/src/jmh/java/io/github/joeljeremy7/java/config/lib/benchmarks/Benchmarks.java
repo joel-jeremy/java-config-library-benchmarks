@@ -25,6 +25,8 @@ public abstract class Benchmarks {
             this.config = ConfigProviderResolver.instance()
                 .getBuilder()
                 .addDefaultSources()
+                .addDiscoveredSources()
+                .addDiscoveredConverters()
                 .withSources(new PropertiesConfigSource(
                     getClass().getResource("/AppProps.properties")
                 ))
