@@ -39,4 +39,4 @@ jobs:
           git config --global user.email 'joeljeremy7@users.noreply.github.com'
           git add merged-jmh-results -f
           git commit -m "Updated Benchmark Results"
-          git subtree push --prefix merged-jmh-results origin gh-pages
+          git push origin `git subtree split --prefix merged-jmh-results main`:gh-pages --force
