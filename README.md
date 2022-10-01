@@ -16,7 +16,7 @@ Each push to the repository will trigger a benchmark run. Latest benchmark resul
 - [MicroProfile Config - MicroBean](https://github.com/microbean/microbean-microprofile-config)
 - [MicroProfile Config - SmallRye](https://github.com/smallrye/smallrye-config)
 - [Owner](https://github.com/matteobaccan/owner)
-- [Spring Core Environment](https://github.com/spring-projects/spring-framework)
+- [Spring Core](https://github.com/spring-projects/spring-framework) (Directly using Spring's [Environment](https://github.com/spring-projects/spring-framework/blob/main/spring-core/src/main/java/org/springframework/core/env/Environment.java))
 
 ## Benchmark Setup
 
