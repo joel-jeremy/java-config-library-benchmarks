@@ -1,6 +1,6 @@
 # Benchmarks Results
 
-Each push to the repository will trigger a benchmark run. Latest benchmark results will be viewable via GitHub Pages: [https://joeljeremy7.github.io/java-config-library-benchmarks/](https://joeljeremy7.github.io/java-config-library-benchmarks/)
+Each push to the repository will trigger a benchmark run. The project uses a special build task which merges all the benchmark results into a single report file. Latest benchmark results will be viewable via GitHub Pages: [https://joeljeremy7.github.io/java-config-library-benchmarks/](https://joeljeremy7.github.io/java-config-library-benchmarks/)
 
 ## Libraries
 
