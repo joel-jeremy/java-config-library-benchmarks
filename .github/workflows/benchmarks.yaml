@@ -36,7 +36,7 @@ jobs:
       - name: GH Pages Upload
         run: |
           git config --global user.name 'Joel Jeremy Marquez'
-          git config --global user.email 'joeljeremy7@users.noreply.github.com'
+          git config --global user.email 'joel-jeremy@users.noreply.github.com'
           git add merged-jmh-results -f
           git commit -m "Updated Benchmark Results"
           git push origin `git subtree split --prefix merged-jmh-results main`:gh-pages --force
