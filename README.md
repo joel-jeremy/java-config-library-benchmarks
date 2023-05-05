@@ -7,7 +7,7 @@ Each push to the repository will trigger a benchmark run. The project uses a spe
 (Alphabetical order)
 
 - [Cfg4j](https://github.com/cfg4j/cfg4j)
-- [Externalized Properties](https://github.com/joeljeremy7/externalized-properties)
+- [Externalized Properties](https://github.com/joel-jeremy/externalized-properties)
 - [Gestalt Config](https://github.com/gestalt-config/gestalt)
 - [Lightbend Config](https://github.com/lightbend/config)
 - [MicroProfile Config - Geronimo](https://github.com/apache/geronimo-config)
