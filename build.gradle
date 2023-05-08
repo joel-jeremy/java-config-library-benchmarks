@@ -28,7 +28,7 @@ configure(javaProjects) {
     }
 
     jmh {
-        jmhVersion = '1.35'
+        jmhVersion = '1.36'
         // humanOutputFile = project.file("${project.buildDir}/reports/jmh/human.txt")
         resultsFile = project.file("${project.buildDir}/reports/jmh/results.json")
         resultFormat = 'JSON'
