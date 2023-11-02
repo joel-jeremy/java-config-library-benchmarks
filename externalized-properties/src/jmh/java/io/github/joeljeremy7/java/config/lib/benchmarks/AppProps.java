@@ -1,6 +1,6 @@
 package io.github.joeljeremy7.java.config.lib.benchmarks;
 
-import io.github.joeljeremy7.externalizedproperties.core.ExternalizedProperty;
+import io.github.joeljeremy.externalizedproperties.core.ExternalizedProperty;
 
 public interface AppProps {
     @ExternalizedProperty("test1")
