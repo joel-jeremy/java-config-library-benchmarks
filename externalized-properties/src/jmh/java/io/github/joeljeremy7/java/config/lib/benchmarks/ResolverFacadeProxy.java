@@ -1,6 +1,6 @@
 package io.github.joeljeremy7.java.config.lib.benchmarks;
 
-import io.github.joeljeremy7.externalizedproperties.core.ResolverFacade;
+import io.github.joeljeremy.externalizedproperties.core.ResolverFacade;
 
 public interface ResolverFacadeProxy {
     @ResolverFacade
