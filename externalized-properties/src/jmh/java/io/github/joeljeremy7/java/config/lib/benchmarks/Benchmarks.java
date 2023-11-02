@@ -1,7 +1,7 @@
 package io.github.joeljeremy7.java.config.lib.benchmarks;
 
-import io.github.joeljeremy7.externalizedproperties.core.ExternalizedProperties;
-import io.github.joeljeremy7.externalizedproperties.core.resolvers.ResourceResolver;
+import io.github.joeljeremy.externalizedproperties.core.ExternalizedProperties;
+import io.github.joeljeremy.externalizedproperties.core.resolvers.ResourceResolver;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
