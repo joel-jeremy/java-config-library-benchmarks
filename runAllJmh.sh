@@ -4,6 +4,7 @@
     :avaje-config:jmh \
     :baseline:jmh \
     :cfg4j:jmh \
+    :coat:jmh \
     :externalized-properties:jmh \
     :gestalt-config:jmh \
     :lightbend-config:jmh \
