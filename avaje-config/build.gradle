@@ -1,0 +1,3 @@
+dependencies {
+    implementation 'io.avaje:avaje-config:3.11'
+}
