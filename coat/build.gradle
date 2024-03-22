@@ -1,4 +1,4 @@
 dependencies {
-    annotationProcessor 'de.poiu.coat:coat-processor:1.0.0'
-    implementation 'de.poiu.coat:coat-runtime:1.0.0'
+    jmhAnnotationProcessor 'de.poiu.coat:coat-processor:2.0.0'
+    implementation 'de.poiu.coat:coat-runtime:2.0.0'
 }

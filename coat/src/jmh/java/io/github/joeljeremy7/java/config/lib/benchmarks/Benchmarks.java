@@ -1,7 +1,7 @@
 package io.github.joeljeremy7.java.config.lib.benchmarks;
 
+import de.poiu.coat.validation.ConfigValidationException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Properties;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -18,14 +18,13 @@ public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        private ImmutableConfig config;
+        private Config config;
 
         @Setup
-        public void setup() throws IOException, URISyntaxException {
-          final InputStream inStream = Benchmark.class.getResourceAsStream("/AppProps.properties");
+        public void setup() throws IOException, URISyntaxException, ConfigValidationException {
           final Properties props= new Properties();
-          props.load(inStream);
-          this.config= ImmutableConfig.from(props);
+          props.load(Config.class.getResourceAsStream("/AppProps.properties"));
+          this.config= ConfigBuilder.from(props);
         }
     }
 
