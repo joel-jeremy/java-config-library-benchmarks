@@ -8,7 +8,7 @@ Each push to the repository will trigger a benchmark run. The project uses a spe
 
 - [Avaje Config](https://avaje.io/config/)
 - [Cfg4j](https://github.com/cfg4j/cfg4j)
-- [Coat](https://github.com/poiu-de/coat)
+- [Coat](https://poiu-de.github.io/coat/)
 - [Externalized Properties](https://github.com/joel-jeremy/externalized-properties)
 - [Gestalt Config](https://github.com/gestalt-config/gestalt)
 - [Lightbend Config](https://github.com/lightbend/config)
