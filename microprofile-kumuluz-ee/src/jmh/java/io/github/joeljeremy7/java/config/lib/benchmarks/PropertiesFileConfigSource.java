@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,11 @@ public class PropertiesFileConfigSource implements ConfigSource {
         this.properties = props.stringPropertyNames()
             .stream()
             .collect(Collectors.toMap(Function.identity(), props::getProperty));
+    }
+
+    @Override
+    public Set<String> getPropertyNames() {
+        return properties.keySet();
     }
 
     @Override

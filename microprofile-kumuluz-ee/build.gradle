@@ -1,4 +1,4 @@
 dependencies {
-    implementation 'com.kumuluz.ee.config:kumuluzee-config-mp:1.4.1'
-    implementation 'com.kumuluz.ee:kumuluzee-common:4.0.0'
+    implementation 'com.kumuluz.ee.config:kumuluzee-config-mp:2.0.0'
+    implementation 'com.kumuluz.ee:kumuluzee-common:4.1.0'
 }
