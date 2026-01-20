@@ -22,8 +22,86 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       
-      - name: Run All Benchmarks
-        run: ./runAllJmh.sh
+      - name: Build
+        run: ./gradlew build
+
+  jmh:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 25 ]
+        module:
+          - avaje-config
+          - baseline
+          - cfg4j
+          - externalized-properties
+          - gestalt-config
+          - lightbend-config
+          - microprofile-geronimo
+          - microprofile-helidon
+          - microprofile-kumuluz-ee
+          - microprofile-microbean
+          - microprofile-smallrye
+          - owner
+          - spring-core
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+        
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      
+      - name: Run ${{ matrix.module }} Benchmarks
+        run: ./gradlew :${{ matrix.module }}:jmh
+
+      - name: Upload ${{ matrix.module }} Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmh-results-${{ matrix.module }}
+          path: ${{ matrix.module }}/build/results.json
+
+  merge:
+    needs: jmh
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 25 ]
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+        
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      
+      - name: Download JMH Results
+        uses: actions/download-artifact@v4
+        with:
+          path: jmh-results
+          pattern: jmh-results-*
+      
+      - name: Organize Results
+        run: |
+          for module_dir in jmh-results/jmh-results-*/; do
+            module_name=$(basename "$module_dir" | sed 's/jmh-results-//')
+            mkdir -p "$module_name/build"
+            cp "$module_dir/results.json" "$module_name/build/results.json"
+          done
+      
+      - name: Merge JMH Results
+        run: ./gradlew mergeJmhResults jmhReport
 
       - name: Deploy Merged Benchmark Results to Gist
         uses: exuanbo/actions-deploy-gist@v1
@@ -32,14 +110,6 @@ jobs:
           gist_id: 016a70a392934d0e5a07a4d291731218
           file_path: merged-jmh-results/merged-jmh-results.json
           file_type: json
-
-      # - name: GH Pages Upload
-      #   run: |
-      #     git config --global user.name 'Joel Jeremy Marquez'
-      #     git config --global user.email 'joel-jeremy@users.noreply.github.com'
-      #     git add merged-jmh-results -f
-      #     git commit -m "Updated Benchmark Results"
-      #     git push origin `git subtree split --prefix merged-jmh-results main`:gh-pages --force
 
       - name: GH Pages Upload
         uses: s0/git-publish-subdir-action@v2.6.0
