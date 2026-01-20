@@ -21,6 +21,8 @@ public abstract class Benchmarks {
     @State(Scope.Benchmark)
     public static class BenchmarkState {
         private Environment env;
+        private String test1Key = "test1";
+        private String testInt1Key = "testInt1";
 
         @Setup
         public void setup() throws IOException {
@@ -42,12 +44,12 @@ public abstract class Benchmarks {
 
     @Benchmark
     public String SpringCore_String(BenchmarkState state) {
-        return state.env.getProperty("test1");
+        return state.env.getProperty(state.test1Key);
     }
 
     @Benchmark
     public int SpringCore_Int(BenchmarkState state) {
-        return state.env.getProperty("testInt1", int.class);
+        return state.env.getProperty(state.testInt1Key, int.class);
     }
 
     private static Properties appProps() throws IOException {

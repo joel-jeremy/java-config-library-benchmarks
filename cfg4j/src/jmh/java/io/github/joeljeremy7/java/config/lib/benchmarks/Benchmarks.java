@@ -25,6 +25,8 @@ public abstract class Benchmarks {
     public static class BenchmarkState {
         private ConfigurationProvider configurationProvider;
         private AppProps appProps;
+        private String test1Key = "test1";
+        private String testInt1Key = "testInt1";
 
         @Setup
         public void setup() {
@@ -68,11 +70,11 @@ public abstract class Benchmarks {
 
     @Benchmark
     public String Cfg4j_GetProperty_String(BenchmarkState state) {
-        return state.configurationProvider.getProperty("test1", String.class);
+        return state.configurationProvider.getProperty(state.test1Key, String.class);
     }
 
     @Benchmark
     public int Cfg4j_GetProperty_Int(BenchmarkState state) {
-        return state.configurationProvider.getProperty("testInt1", int.class);
+        return state.configurationProvider.getProperty(state.testInt1Key, int.class);
     }
 }

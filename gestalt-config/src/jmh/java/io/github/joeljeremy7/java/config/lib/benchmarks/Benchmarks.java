@@ -19,6 +19,8 @@ public abstract class Benchmarks {
     @State(Scope.Benchmark)
     public static class BenchmarkState {
         private Gestalt gestalt;
+        private String test1Key = "test1";
+        private String testInt1Key = "testInt1";
 
         @Setup
         public void setup() throws GestaltException {
@@ -42,11 +44,11 @@ public abstract class Benchmarks {
 
     @Benchmark
     public String GestaltConfig_String(BenchmarkState state) throws GestaltException {
-        return state.gestalt.getConfig("test1", String.class);
+        return state.gestalt.getConfig(state.test1Key, String.class);
     }
 
     @Benchmark
     public int GestaltConfig_Int(BenchmarkState state) throws GestaltException {
-        return state.gestalt.getConfig("testInt1", int.class);
+        return state.gestalt.getConfig(state.testInt1Key, int.class);
     }
 }
