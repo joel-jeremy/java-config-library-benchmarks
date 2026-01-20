@@ -18,6 +18,8 @@ public abstract class Benchmarks {
     @State(Scope.Benchmark)
     public static class BenchmarkState {
         private Config config;
+        private String test1Key = "test1";
+        private String testInt1Key = "testInt1";
 
         @Setup
         public void setup() {
@@ -43,11 +45,11 @@ public abstract class Benchmarks {
 
     @Benchmark
     public String MP_Geronimo_String(BenchmarkState state) {
-        return state.config.getValue("test1", String.class);
+        return state.config.getValue(state.test1Key, String.class);
     }
 
     @Benchmark
     public int MP_Geronimo_Int(BenchmarkState state) {
-        return state.config.getValue("testInt1", int.class);
+        return state.config.getValue(state.testInt1Key, int.class);
     }
 }

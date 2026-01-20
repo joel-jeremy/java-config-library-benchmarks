@@ -23,14 +23,14 @@ configure(javaProjects) {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(24)
+            languageVersion = JavaLanguageVersion.of(25)
         }
     }
 
     jmh {
         jmhVersion = '1.37'
         // humanOutputFile = project.file("${project.buildDir}/reports/jmh/human.txt")
-        resultsFile = project.file("${project.buildDir}/reports/jmh/results.json")
+        resultsFile = project.file("${file(layout.buildDirectory)}/reports/jmh/results.json")
         resultFormat = 'JSON'
         jvmArgs = [ '-Xmx2G' ]
         failOnError = true
@@ -41,6 +41,7 @@ configure(javaProjects) {
         timeOnIteration = '5s'
         iterations = 5
         fork = 2
+        // profilers = ["async:libPath=${file(rootProject.layout.projectDirectory)}/lib/async-profiler/lib/libasyncProfiler.so;output=flamegraph;dir=${file(layout.buildDirectory)}/reports/jmh/async-profiler"]
     }
 }
 

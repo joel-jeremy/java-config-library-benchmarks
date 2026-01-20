@@ -19,6 +19,8 @@ public abstract class Benchmarks {
     public static class BenchmarkState {
         private AppProps appProps;
         private ResolverFacadeProxy resolverFacadeProxy;
+        private String test1Key = "test1";
+        private String testInt1Key = "testInt1";
 
         @Setup
         public void setup() throws IOException {
@@ -56,11 +58,11 @@ public abstract class Benchmarks {
 
     @Benchmark
     public String EP_ResolverFacade_String(BenchmarkState state) {
-        return state.resolverFacadeProxy.resolve("test1");
+        return state.resolverFacadeProxy.resolve(state.test1Key);
     }
 
     @Benchmark
     public int EP_ResolverFacade_Int(BenchmarkState state) {
-        return state.resolverFacadeProxy.resolve("testInt1", int.class);
+        return state.resolverFacadeProxy.resolve(state.testInt1Key, int.class);
     }
 }

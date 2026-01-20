@@ -14,6 +14,12 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class Benchmarks {
 
+    @State(Scope.Benchmark)
+    public static class BenchmarkState {
+        private String test1Key = "test1";
+        private String testInt1Key = "testInt1";
+    }
+
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     public static class Avgt extends Benchmarks {}
@@ -23,12 +29,12 @@ public abstract class Benchmarks {
     public static class Thrpt extends Benchmarks {}
 
     @Benchmark
-    public String Avaje_String() {
-        return Config.get("test1");
+    public String Avaje_String(BenchmarkState state) {
+        return Config.get(state.test1Key);
     }
 
     @Benchmark
-    public int Avaje_Int() {
-        return Config.getInt("testInt1");
+    public int Avaje_Int(BenchmarkState state) {
+        return Config.getInt(state.testInt1Key);
     }
 }

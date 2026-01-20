@@ -17,6 +17,8 @@ public abstract class Benchmarks {
     @State(Scope.Benchmark)
     public static class BenchmarkState {
         private Config config;
+        private String test1Key = "test1";
+        private String testInt1Key = "testInt1";
 
         @Setup
         public void setup() {
@@ -34,11 +36,11 @@ public abstract class Benchmarks {
 
     @Benchmark
     public String LightbendConfig_String(BenchmarkState state) {
-        return state.config.getString("test1");
+        return state.config.getString(state.test1Key);
     }
 
     @Benchmark
     public int LightbendConfig_Int(BenchmarkState state) {
-        return state.config.getInt("testInt1");
+        return state.config.getInt(state.testInt1Key);
     }
 }
