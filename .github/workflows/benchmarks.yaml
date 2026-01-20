@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jmh-results-${{ matrix.module }}
-          path: ${{ matrix.module }}/build/results.json
+          path: ${{ matrix.module }}/build/reports/jmh/results.json
 
   merge:
     needs: jmh
@@ -96,8 +96,8 @@ jobs:
         run: |
           for module_dir in jmh-results/jmh-results-*/; do
             module_name=$(basename "$module_dir" | sed 's/jmh-results-//')
-            mkdir -p "$module_name/build"
-            cp "$module_dir/results.json" "$module_name/build/results.json"
+            mkdir -p "$module_name/build/reports/jmh"
+            cp "$module_dir/results.json" "$module_name/build/reports/jmh/results.json"
           done
       
       - name: Merge JMH Results

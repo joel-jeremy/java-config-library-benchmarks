@@ -40,5 +40,15 @@ To introduce a new benchmark, create a new gradle subproject and:
         2. Retrieve an `int` property/configuration
 3. Create an `Avgt` and `Thrpt` nested class within `Benchmark` which extends the abstract `Benchmark` class so that they execute the same benchmarks.
 4. Annotate `Avgt` and `Thrpt` nested classes with appropriate JMH annotations to record results: avgt (ns) and thrpt (ms).
-5. Add the subproject's `jmh` task to the `runAllJmh.sh` script.
+5. Add the subproject folder name to the `benchmarks.yaml` GitHub Actions workflow:
+    ```yaml
+    jmh:
+      needs: build
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          module:
+            - ...
+            - my-config-library
+    ```
 6. Add project repository link to [Libraries](#libraries) section.
