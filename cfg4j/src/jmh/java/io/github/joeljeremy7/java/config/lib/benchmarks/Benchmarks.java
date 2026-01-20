@@ -25,11 +25,14 @@ public abstract class Benchmarks {
     public static class BenchmarkState {
         private ConfigurationProvider configurationProvider;
         private AppProps appProps;
-        private String test1Key = "test1";
-        private String testInt1Key = "testInt1";
+        private String test1Key;
+        private String testInt1Key;
 
         @Setup
         public void setup() {
+            this.test1Key = "test1";
+            this.testInt1Key = "testInt1";
+
             this.configurationProvider = initCf4jConfigurationProvider();
             this.appProps = configurationProvider.bind("", AppProps.class);
         }

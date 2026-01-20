@@ -16,8 +16,14 @@ public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        private String test1Key = "test1";
-        private String testInt1Key = "testInt1";
+        private String test1Key;
+        private String testInt1Key;
+
+        @Setup
+        public void setup() {
+            this.test1Key = "test1";
+            this.testInt1Key = "testInt1";
+        }
     }
 
     @BenchmarkMode(Mode.AverageTime)

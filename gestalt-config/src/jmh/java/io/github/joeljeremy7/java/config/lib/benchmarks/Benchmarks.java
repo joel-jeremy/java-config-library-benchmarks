@@ -3,7 +3,7 @@ package io.github.joeljeremy7.java.config.lib.benchmarks;
 import org.github.gestalt.config.Gestalt;
 import org.github.gestalt.config.builder.GestaltBuilder;
 import org.github.gestalt.config.exceptions.GestaltException;
-import org.github.gestalt.config.source.ClassPathConfigSource;
+import org.github.gestalt.config.source.ClassPathConfigSourceBuilder;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -19,16 +19,19 @@ public abstract class Benchmarks {
     @State(Scope.Benchmark)
     public static class BenchmarkState {
         private Gestalt gestalt;
-        private String test1Key = "test1";
-        private String testInt1Key = "testInt1";
+        private String test1Key;
+        private String testInt1Key;
 
         @Setup
         public void setup() throws GestaltException {
+            this.test1Key = "test1";
+            this.testInt1Key = "testInt1";
+
             this.gestalt = new GestaltBuilder()
                 .addDefaultConfigLoaders()
                 .addDefaultDecoders()
                 .addDefaultPostProcessors()
-                .addSource(new ClassPathConfigSource("/AppProps.properties"))
+                .addSource(ClassPathConfigSourceBuilder.builder().setResource("/AppProp.properties").build())
                 .build();
             this.gestalt.loadConfigs();
         }

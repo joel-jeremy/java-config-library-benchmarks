@@ -21,11 +21,14 @@ public abstract class Benchmarks {
     @State(Scope.Benchmark)
     public static class BenchmarkState {
         private Environment env;
-        private String test1Key = "test1";
-        private String testInt1Key = "testInt1";
+        private String test1Key;
+        private String testInt1Key;
 
         @Setup
         public void setup() throws IOException {
+            this.test1Key = "test1";
+            this.testInt1Key = "testInt1";
+
             ConfigurableEnvironment env = new StandardEnvironment();
             env.getPropertySources().addFirst(
                 new PropertiesPropertySource("appProps", appProps())
