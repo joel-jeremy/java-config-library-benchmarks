@@ -31,7 +31,7 @@ public abstract class Benchmarks {
                 .addDefaultConfigLoaders()
                 .addDefaultDecoders()
                 .addDefaultPostProcessors()
-                .addSource(ClassPathConfigSourceBuilder.builder().setResource("/AppProp.properties").build())
+                .addSource(ClassPathConfigSourceBuilder.builder().setResource("/AppProps.properties").build())
                 .build();
             this.gestalt.loadConfigs();
         }
