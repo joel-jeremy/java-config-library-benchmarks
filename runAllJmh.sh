@@ -1,7 +1,6 @@
 #!/bin/sh
 
 ./gradlew build \
-    :avaje-config:jmh \
     :baseline:jmh \
     :cfg4j:jmh \
     :externalized-properties:jmh \

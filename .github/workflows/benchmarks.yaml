@@ -32,7 +32,6 @@ jobs:
       matrix:
         java: [ 25 ]
         module:
-          - avaje-config
           - baseline
           - cfg4j
           - externalized-properties

@@ -6,7 +6,6 @@ Each push to the repository will trigger a benchmark run. The project uses a spe
 
 (Alphabetical order)
 
-- [Avaje Config](https://avaje.io/config/)
 - [Cfg4j](https://github.com/cfg4j/cfg4j)
 - [Externalized Properties](https://github.com/joel-jeremy/externalized-properties)
 - [Gestalt Config](https://github.com/gestalt-config/gestalt)
