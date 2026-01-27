@@ -16,19 +16,24 @@ public abstract class Benchmarks {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        private String test1Key = "test1";
-        private String testInt1Key = "testInt1";
-        private String test1EnvKey = "TEST1";
-        private String testInt1EnvKey = "TEST_INT1";
-    }
+        private String test1Key;
+        private String testInt1Key;
+        private String test1EnvKey;
+        private String testInt1EnvKey;
 
-    @Setup
-    public void setup() throws NoSuchFieldException, SecurityException,
-            IllegalArgumentException, IllegalAccessException {
-        System.setProperty("test1", "test.value.1");
-        System.setProperty("testInt1", "1");
-        setEnv("TEST1", "test.value.1");
-        setEnv("TEST_INT1", "1");
+        @Setup
+        public void setup() throws NoSuchFieldException, SecurityException,
+                IllegalArgumentException, IllegalAccessException {
+            this.test1Key = "test1";
+            this.testInt1Key = "testInt1";
+            this.test1EnvKey = "TEST1";
+            this.testInt1EnvKey = "TEST_INT1";
+
+            System.setProperty(this.test1Key, "test.value.1");
+            System.setProperty(this.testInt1Key, "1");
+            setEnv(this.test1EnvKey, "test.value.1");
+            setEnv(this.testInt1EnvKey, "1");
+        }
     }
 
     @BenchmarkMode(Mode.AverageTime)

@@ -25,9 +25,9 @@ Each library is setup with its "default" configurations. In addition to the defa
 
 ## Benchmark Run
 
-Benchmarks require Java 11.
+Benchmarks require Java 25.
 
-To run the benchmarks and generate reports, use the `runAllJmh.sh` script.
+To run the benchmarks and generate reports locally, use the `runAllJmh.sh` script.
 
 ## Adding New Benchmarks
 
@@ -41,4 +41,15 @@ To introduce a new benchmark, create a new gradle subproject and:
 3. Create an `Avgt` and `Thrpt` nested class within `Benchmark` which extends the abstract `Benchmark` class so that they execute the same benchmarks.
 4. Annotate `Avgt` and `Thrpt` nested classes with appropriate JMH annotations to record results: avgt (ns) and thrpt (ms).
 5. Add the subproject's `jmh` task to the `runAllJmh.sh` script.
-6. Add project repository link to [Libraries](#libraries) section.
+6. Add the subproject's folder name to the `benchmarks.yaml` GitHub Actions workflow:
+    ```yaml
+    jmh:
+      needs: build
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          module:
+            - ...
+            - my-config-library
+    ```
+7. Add project repository link to [Libraries](#libraries) section.

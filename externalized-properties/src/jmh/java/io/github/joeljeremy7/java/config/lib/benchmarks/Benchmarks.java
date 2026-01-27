@@ -19,11 +19,14 @@ public abstract class Benchmarks {
     public static class BenchmarkState {
         private AppProps appProps;
         private ResolverFacadeProxy resolverFacadeProxy;
-        private String test1Key = "test1";
-        private String testInt1Key = "testInt1";
+        private String test1Key;
+        private String testInt1Key;
 
         @Setup
         public void setup() throws IOException {
+            this.test1Key = "test1";
+            this.testInt1Key = "testInt1";
+
             ExternalizedProperties externalizedProperties =
                 ExternalizedProperties.builder()
                     .defaults()
