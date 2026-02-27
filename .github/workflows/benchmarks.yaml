@@ -64,7 +64,7 @@ jobs:
         run: ./gradlew :${{ matrix.module }}:jmh
 
       - name: Upload ${{ matrix.module }} Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: jmh-results-${{ matrix.module }}
           path: ${{ matrix.module }}/build/reports/jmh/results.json
